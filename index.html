@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Grade Entry</title>
+</head>
+<body>
+    <ul class="tabs">
+        <li data-tab-target="#Dashboard" class="active tab">Dashboard</li>
+        <li data-tab-target="#Schedule-Builder" class="tab">Schedule Builder</li>
+        <li data-tab-target="#Post-Review" class="tab">Post Review</li>
+    </ul>
+    <div class="tab-content">
+        <div id="Dashboard" data-tab-content class="active">
+            <!-- Grade Entry Tab -->
+            <h1>
+                Find Reviews
+            </h1>
+            <form method="POST" action="input-service.php">
+                <label for="professor">Professsor: </label><br><br>
+                <input type="text" id="professor"><br><br>
+                <label for="school">School: </label><br><br>
+                <input type="text" id="school"><br><br>
+                <label for="numReviews">Number of Reviews: </label><br><br>
+                <input type="text" id="numReviews"><br><br>
+                <label for="course">Course: </label><br><br>
+                <input type="text" id="course"><br><br> 
+            </form>
+            <button id="dashboardSearch">Search</button>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script>
+                $("#dashboardSearch").click(function(){ 
+                    var professor = $("#professor").val();
+                    var school = $("#school").val();
+                    var numReviews = $("#numReviews").val();
+                    var course = $("#course").val();                   
+                    //alert("Sending Data prof: " + professor + " school: " + school + " number of reviews: " + numReviews + " course: " + course);
+                    $.ajax({                        
+                        url: '',
+                        type: 'post',
+                        data: {'studentID': id, 'grades': grade },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        headers :{
+                            'Authorization' : 'Basic ' + btoa(user + ':' + pass)
+                        },
+                        success: function(data, status)
+                        {
+                            if (status == "success")
+                            {
+                                alert("Grade Submitted!");
+                                $("#studentID").val("")
+                                $("#grades").val("")                        
+                            }
+                        },
+                        error: function (xhr, desc, err)
+                        {
+                            alert("Error submitting grade.");
+                            console.log(xhr);
+                            console.log("Details: " + desc + "\nError:" + err);
+                            $("#username").val("")
+                            $("#password").val("") 
+                        }
+                    });
+                });
+            </script>
+        </div>
+        
+        <div id="Schedule-Builder" data-tab-content>
+            <!-- Grade Viewer Tab -->
+            <h1>Schedule Builder</h1>
+
+            <label for="schoolSB">School: </label><br><br>
+            <input type="text" id="schoolSB"><br><br>
+            <label for="courses">Courses: </label><br><br>
+            <input type="text" id="courses"><br><br> 
+            <button id="loadBuilder">Search</button>           
+        <hr>
+
+        <div id="builder">        
+        </div>
+        
+        <hr>                    
+            
+        </script>
+        </div>
+        <div id="Post-Review" data-tab-content>
+            <!-- Login Tab -->
+            <h1>Review a Professor</h1>
+            <form method="POST" action="input-service.php">
+                <label for="course">Course: </label><br><br>
+                <input type="text" id="course"><br><br>
+                <label for="rating">Rating: </label><br><br>
+                <input type="text" id="Rating"><br><br>
+                <label for="difficulty">Difficulty: </label><br><br>
+                <input type="text" id="difficulty"><br><br>
+                <label for="take-again">Take Again? </label><br><br>
+                <input type="text" id="take-again"><br><br>
+                <label for="review">Review:  </label><br><br>
+                <input type="text" id="review"><br><br>
+                 
+            </form>
+            <button id="postReview">Submit</button>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script>
+                $("#postReview").click(function(){ 
+                    var course = $("#course").val();
+                    var rating = $("#rating").val();
+                    var difficulty = $("#difficulty").val();
+                    var takeAgain = $("#take-again").val(); 
+                    var review = $("#review").val();                   
+                    alert("Sending Data course: " + course + " rating: " + rating + " difficulty: " + difficulty + " take again: " + takeAgain + " review: " + review);
+                    //alert("Credentials:\n Username: " + user + " Password: " + pass);
+                    $.ajax({                        
+                        url: 'input-service.php',
+                        type: 'post',
+                        data: {'studentID': id, 'grades': grade },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        headers :{
+                            'Authorization' : 'Basic ' + btoa(user + ':' + pass)
+                        },
+                        success: function(data, status)
+                        {
+                            if (status == "success")
+                            {
+                                alert("Grade Submitted!");
+                                $("#studentID").val("")
+                                $("#grades").val("")                        
+                            }
+                        },
+                        error: function (xhr, desc, err)
+                        {
+                            alert("Error submitting grade.");
+                            console.log(xhr);
+                            console.log("Details: " + desc + "\nError:" + err);
+                            $("#username").val("")
+                            $("#password").val("") 
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+    </div>
+</body>
+</html>
