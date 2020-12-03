@@ -9,65 +9,36 @@
 </head>
 <body>
     <ul class="tabs">
-        <li data-tab-target="#Dashboard" class="active tab">Dashboard</li>
-        <li data-tab-target="#Schedule-Builder" class="tab">Schedule Builder</li>
-        <li data-tab-target="#Post-Review" class="tab">Post Review</li>
+        <li data-tab-target="#Professor" class="active tab">Find Professor</li>
+        <li data-tab-target="#Reviews" class="tab">Find Top Reviews</li>
     </ul>
     <div class="tab-content">
-        <div id="Dashboard" data-tab-content class="active">
+        <div id="Professor" data-tab-content class="active">
             <!-- Grade Entry Tab -->
             <h1>
-                Find Reviews
+                Find Professor
             </h1>
             <form method="POST" action="/professor_search">
                 <label for="professor">Professsor: </label><br><br>
                 <input type="text" name="professor"> (testing purposes: Cyril Ku)<br><br>
                 <label for="school">School ID: </label><br><br>
                 <input type="text" name="school"> (testing purposes: 1205)<br><br>
-                <label for="numReviews">Number of Reviews: </label><br><br>
-                <input type="text" name="numReviews"><br><br>
-                <label for="course">Course: </label><br><br>
-                <input type="text" name="course"><br><br>
                 <input type="submit" name="dashboardSearch" value="Search" />
             </form>
         </div>
-        
-        <div id="Schedule-Builder" data-tab-content>
-            <!-- Grade Viewer Tab -->
-            <h1>Schedule Builder</h1>
-
-            <label for="schoolSB">School: </label><br><br>
-            <input type="text" id="schoolSB"><br><br>
-            <label for="courses">Courses: </label><br><br>
-            <input type="text" id="courses"><br><br> 
-            <button id="loadBuilder">Search</button>
-        <hr>
-
-        <div id="builder">        
-        </div>
-        
-        <hr>                    
-            
-        </script>
-        </div>
-        <div id="Post-Review" data-tab-content>
-            <!-- Login Tab -->
-            <h1>Review a Professor</h1>
-            <form method="POST" action="input-service.php">
-                <label for="course">Course: </label><br><br>
-                <input type="text" id="course"><br><br>
-                <label for="rating">Rating: </label><br><br>
-                <input type="text" id="Rating"><br><br>
-                <label for="difficulty">Difficulty: </label><br><br>
-                <input type="text" id="difficulty"><br><br>
-                <label for="take-again">Take Again? </label><br><br>
-                <input type="text" id="take-again"><br><br>
-                <label for="review">Review:  </label><br><br>
-                <input type="text" id="review"><br><br>
+        <div id="Reviews" data-tab-content>
+            <!-- Review Tab -->
+            <h1>Top Reviews</h1>
+            <form method="POST" action="/review_search">
+                <label for="professor">Professsor: </label><br><br>
+                <input type="text" name="professor"> (testing purposes: Cyril Ku)<br><br>
+                <label for="school">School ID: </label><br><br>
+                <input type="text" name="school"> (testing purposes: 1205)<br><br>
+                <label for="school">Number of Reviews: </label><br><br>
+                <input type="text" name="numReviews"><br><br>
+                <input type="submit" name="dashboardSearch" value="Search" />
             </form>
-            <button id="postReview">Submit</button>
         </div>
-
     </div>
 </body>
 </html>
