@@ -11,6 +11,18 @@ body {
     margin: 0;
 }
 
+input[type="text"] {
+    width: 10%;
+}
+
+table {
+    border: solid black;
+}
+
+td {
+    padding: 10px;
+}
+
 .tabs {
     display: flex;
     justify-content: space-around;

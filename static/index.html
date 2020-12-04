@@ -11,6 +11,7 @@
     <ul class="tabs">
         <li data-tab-target="#Professor" class="active tab">Find Professor</li>
         <li data-tab-target="#Reviews" class="tab">Find Top Reviews</li>
+        <li data-tab-target="#Schedule" class="tab">Schedule Builder</li>
     </ul>
     <div class="tab-content">
         <div id="Professor" data-tab-content class="active">
@@ -18,27 +19,68 @@
             <h1>
                 Find Professor
             </h1>
-            <form method="POST" action="/professor_search">
-                <label for="professor">Professsor: </label><br><br>
-                <input type="text" name="professor"> (testing purposes: Cyril Ku)<br><br>
-                <label for="school">School ID: </label><br><br>
-                <input type="text" name="school"> (testing purposes: 1205)<br><br>
-                <input type="submit" name="dashboardSearch" value="Search" />
+            <form method="GET" action="/professor_search">
+                <label for="professor">Professor:* </label>
+                <input type="text" name="professor" required><br><br>
+                <label for="school">University Name:* </label>
+                <input type="text" name="school" value="William Paterson University" required><br><br>
+                <button type="submit">Search</button>
             </form>
         </div>
         <div id="Reviews" data-tab-content>
             <!-- Review Tab -->
             <h1>Top Reviews</h1>
-            <form method="POST" action="/review_search">
-                <label for="professor">Professsor: </label><br><br>
-                <input type="text" name="professor"> (testing purposes: Cyril Ku)<br><br>
-                <label for="school">School ID: </label><br><br>
-                <input type="text" name="school"> (testing purposes: 1205)<br><br>
-                <label for="school">Number of Reviews: </label><br><br>
+            <form method="GET" action="/review_search">
+                <label for="professor">Professor:* </label>
+                <input type="text" name="professor" required><br><br>
+                <label for="school">University Name:* </label>
+                <input type="text" name="school" value="William Paterson University" required><br><br>
+                <label for="school">Number of Reviews: </label>
                 <input type="text" name="numReviews"><br><br>
-                <input type="submit" name="dashboardSearch" value="Search" />
+                <label for="school">Course Number: </label>
+                <input type="text" name="courseNumber"><br><br>
+                <button type="submit">Search</button>
             </form>
         </div>
+        <div id="Schedule" data-tab-content>
+            <!-- Schedule Builder Tab -->
+            <h1>Schedule Builder</h1>
+            <form method="POST" action="/schedule_search">
+                <label for="school">University Name:* </label>
+                <input type="text" name="school" value="William Paterson University" required><br><br>
+                <button type="button" onclick="addCourse()">Add Course</button>
+                <button type="submit">Search</button>
+                <hr>
+                <div id="courseList"></div>
+            </form>
+        </div>
+        <!-- Schedule Builder course template -->
+        <script id="courseTemplate" type="text/template">
+            <div class="course">
+                <br>
+                <label for="professor_{i}">Professor:* </label>
+                <input type="text" name="professor_{i}" required><br><br>
+                <label for="courseNumber_{i}">Course Number:* </label>
+                <input type="text" name="courseNumber_{i}" required><br><br>
+                <button type="button" onclick="removeCourse({i})">Remove Course</button>
+                <br>
+            </div>
+        </script>
+    </div><br><br><br>
+    <hr>
+    <div class="data-examples" style="margin-left: 20px; margin-right: 20px;">
+        <h4>
+            Example data values to copy/paste into forms are provided below.
+        </h4>
+        University: William Paterson University
+        <br><br>
+        <table>
+            <tr><th>Professor</th><th>Courses Taught</th></tr>
+            <tr><td>Cyril Ku</td><td>CS350, CS3500, CS3550</td></tr>
+            <tr><td>Alphonse Dattolo</td><td>SP110, SPAN110</td></tr>
+            <tr><td>James Arnone </td><td>BIO1630, BIO2050, BIO2060</td></tr>
+            <tr><td>Benjamin Leibowitz </td><td>GROUP322, PSY410, GROUPDYNAMICS</td></tr>
+        </table>
     </div>
 </body>
 </html>

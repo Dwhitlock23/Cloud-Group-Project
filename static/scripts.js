@@ -14,3 +14,16 @@ tabs.forEach(tab => {
         target.classList.add('active')
     })
 })
+
+function addCourse() {
+    var container = document.getElementById("courseList");
+    var template = document.getElementById("courseTemplate");
+    var newCourse = document.createElement("course_" + container.children.length)
+    newCourse.innerHTML = template.innerHTML.replace(/{i}/g, container.children.length);
+    container.append(newCourse);
+}
+
+function removeCourse(index) {
+    var container = document.getElementById("courseList");
+    container.children[index].innerHTML = "";
+}
